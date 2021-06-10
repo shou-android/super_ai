@@ -1,0 +1,3 @@
+include ':superview'
+include ':app'
+rootProject.name = "AI"
