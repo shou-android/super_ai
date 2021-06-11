@@ -17,10 +17,6 @@ import com.ai.superview.CalendarView;
 import com.ai.ai.R;
 import com.ai.ai.base.activity.BaseActivity;
 import com.ai.ai.base.fragment.FragmentAdapter;
-//import com.ai.ai.colorful.ColorfulActivity;
-//import com.ai.ai.index.IndexActivity;
-//import com.ai.ai.meizu.MeiZuActivity;
-//import com.ai.ai.simple.SimpleActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -39,6 +39,7 @@ public class CalendarLinearLayout extends LinearLayout implements CalendarLayout
             }
         }
         return mAdapter != null && ((PagerFragment) mAdapter.getCurFragment()).isScrollTop();
+        //return false;
     }
 
 }

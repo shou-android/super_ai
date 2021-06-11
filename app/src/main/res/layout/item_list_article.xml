@@ -13,41 +13,39 @@
     android:paddingTop="12dp"
     tools:ignore="MissingDefaultResource">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center_vertical"
-        android:contentDescription="@string/app_name"
-        android:src="@mipmap/ic_launcher" />
+    <CheckBox
+        android:id="@+id/Finish"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_marginLeft="16dp"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_weight="0.8"
         android:orientation="vertical"
         tools:ignore="RtlHardcoded">
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="2"
             android:textColor="#333333"
             android:textSize="16sp"
-            tools:text="新西兰克马德克群岛发生5.7级地震 震源深度10千米" />
+            />
 
         <TextView
             android:id="@+id/tv_content"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:lines="2"
-            android:layout_marginTop="4dp"
             android:textColor="#9f9f9f"
             android:textSize="12sp"
-            tools:text="地震快讯#中国地震台网正式测定：12月04日08时08分在克马德克群岛（南纬32.82度，西经178.73度）发生5.7级地震，震源深度10千米。" />
+             />
     </LinearLayout>
+
 </LinearLayout>

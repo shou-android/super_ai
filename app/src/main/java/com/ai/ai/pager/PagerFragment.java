@@ -2,8 +2,8 @@ package com.ai.ai.pager;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ai.ai.Object;
-import com.ai.ai.ObjectAdapter;
+import com.ai.ai.OBJ.Object;
+import com.ai.ai.OBJ.ObjectAdapter;
 import com.ai.ai.R;
 import com.ai.ai.base.fragment.BaseFragment;
 import com.ai.ai.group.GroupItemDecoration;

@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.ai.superview.Calendar;
 import com.ai.superview.CalendarLayout;
 import com.ai.superview.CalendarView;
-import com.ai.ai.Object;
-import com.ai.ai.ObjectAdapter;
+import com.ai.ai.OBJ.Object;
+import com.ai.ai.OBJ.ObjectAdapter;
 import com.ai.ai.R;
 import com.ai.ai.base.activity.BaseActivity;
 import com.ai.ai.group.GroupItemDecoration;
@@ -29,15 +29,10 @@ public class ProgressActivity extends BaseActivity implements
         View.OnClickListener {
 
     TextView mTextMonthDay;
-
     TextView mTextYear;
-
     TextView mTextLunar;
-
     TextView mTextCurrentDay;
-
     CalendarView mCalendarView;
-
     RelativeLayout mRelativeTool;
     private int mYear;
     CalendarLayout mCalendarLayout;

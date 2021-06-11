@@ -1,4 +1,4 @@
-package com.ai.ai;
+package com.ai.ai.OBJ;
 
 import java.io.Serializable;
 
@@ -10,7 +10,7 @@ public class Object implements Serializable {
     private int id;
     private String title;
     private String content;
-    private String imgUrl;
+    private boolean finish;
     private String desc;
     private String date;
     private int type;
@@ -47,12 +47,12 @@ public class Object implements Serializable {
         this.content = content;
     }
 
-    public String getImgUrl() {
-        return imgUrl;
+    public boolean getfinish() {
+        return finish;
     }
 
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
+    public void setFinish(boolean finish) {
+        this.finish = finish;
     }
 
     public String getDesc() {
