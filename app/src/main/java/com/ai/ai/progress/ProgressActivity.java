@@ -74,13 +74,21 @@ public class ProgressActivity extends BaseActivity implements
                 mTextLunar.setVisibility(View.GONE);
                 mTextYear.setVisibility(View.GONE);
                 mTextMonthDay.setText(String.valueOf(mYear));
-
             }
+
         });
+
+
         findViewById(R.id.fl_current).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mCalendarView.scrollToCurrent();
+
+                mRecyclerView = findViewById(R.id.recyclerView);
+                mRecyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
+                mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
+                mRecyclerView.setAdapter(new ObjectAdapter(v.getContext()));
+                mRecyclerView.notifyDataSetChanged();
             }
         });
        /* FloatingActionButton fab = findViewById(R.id.Obadd);
@@ -130,13 +138,6 @@ public class ProgressActivity extends BaseActivity implements
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);
 
-
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
-        mRecyclerView.setAdapter(new ObjectAdapter(this));
-        mRecyclerView.notifyDataSetChanged();
-
     }
 
 
@@ -183,12 +184,20 @@ public class ProgressActivity extends BaseActivity implements
         mTextYear.setText(String.valueOf(calendar.getYear()));
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
+
+        /**
+         * 设置每日任务
+         */
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(super.getBaseContext()));
+        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
+        mRecyclerView.setAdapter(new ObjectAdapter(super.getBaseContext()));
+        mRecyclerView.notifyDataSetChanged();
     }
 
     @Override
     public void onYearChange(int year) {
         mTextMonthDay.setText(String.valueOf(year));
     }
-
 
 }

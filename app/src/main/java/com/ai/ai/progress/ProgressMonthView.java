@@ -5,6 +5,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.ai.ai.OBJ.Object;
+import com.ai.ai.OBJ.ObjectAdapter;
+import com.ai.ai.R;
+import com.ai.ai.group.GroupItemDecoration;
+import com.ai.ai.group.GroupRecyclerView;
 import com.ai.superview.Calendar;
 import com.ai.superview.MonthView;
 
@@ -14,6 +21,7 @@ import com.ai.superview.MonthView;
 
 public class ProgressMonthView extends MonthView {
 
+    GroupRecyclerView mRecyclerView;
     private Paint mProgressPaint = new Paint();
     private Paint mNoneProgressPaint = new Paint();
     private int mRadius;
@@ -42,6 +50,7 @@ public class ProgressMonthView extends MonthView {
         int cx = x + mItemWidth / 2;
         int cy = y + mItemHeight / 2;
         canvas.drawCircle(cx, cy, mRadius, mSelectedPaint);
+
         return false;
     }
 
@@ -57,7 +66,6 @@ public class ProgressMonthView extends MonthView {
 
         RectF noneRectF = new RectF(cx - mRadius, cy - mRadius, cx + mRadius, cy + mRadius);
         canvas.drawArc(noneRectF, angle - 90, 360 - angle, false, mNoneProgressPaint);
-
     }
 
     @Override
