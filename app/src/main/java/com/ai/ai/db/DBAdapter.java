@@ -6,12 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.Contacts;
+
 
 import  com.ai.ai.lesson.clesson;
-
-
-
 import androidx.annotation.Nullable;
 
 public class DBAdapter {
@@ -29,8 +26,10 @@ public class DBAdapter {
     private final Context context;
     private DBOpenHelper dbOpenHelper;
 
-
-    public long insert1(clesson lesson){
+    /**
+     * 插入函数接口
+     */
+    public long insert(clesson lesson){
         ContentValues newValues=new ContentValues();
 
         newValues.put(KEY_NAME,lesson.getCname());
@@ -41,52 +40,70 @@ public class DBAdapter {
 
         return db.insert(DB_TABLE,null,newValues);//insert(DB_TABLE,null,newValues);
     }
-    /*
+
+    /**
+     * 各类函数封装
+     * @return
+     */
     public long deleteAllData(){
         return db.delete(DB_TABLE,null,null);
     }
     public long deleteOneData(long id){
         return db.delete(DB_TABLE,KEY_ID+"=",null);
     }
-    public People[] queryAllData(){
-        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_AGE,KEY_DEP},null,null,null,null,null);
-        return ConvertToPeople(results);
+
+    /**
+     * 查询数据
+     * @return
+     */
+    public clesson[] queryAllData(){
+        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_LOC,KEY_TD,KEY_TN},null,null,null,null,null);
+        return ConvertToclesson(results);
     }
-    public People[] queryOneDate(long id){
-        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_AGE,KEY_DEP},KEY_ID+"="+id,null,null,null,null);
-        return ConvertToPeople(results);
+    public clesson[] queryOneDate(long id){
+        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_LOC,KEY_TD,KEY_TN},KEY_ID+"="+id,null,null,null,null);
+        return ConvertToclesson(results);
     }
-    public long updateOneData(long id,People people){
+
+    /**
+     * 更新数据
+     */
+    public long updateOneData(long id,clesson lesson){
         ContentValues updateValues=new ContentValues();
-        updateValues.put(KEY_NAME,people.Name);
-        updateValues.put(KEY_AGE,people.Age);
-        updateValues.put(KEY_DEP,people.Department);
+        updateValues.put(KEY_NAME,lesson.getCname());
+        updateValues.put(KEY_LOC,lesson.getLocat());
+        updateValues.put(KEY_TD,lesson.getTimedata());
+        updateValues.put(KEY_TN,lesson.getTname());
 
         return db.update(DB_TABLE,updateValues,KEY_ID+"="+id,null);
     }
 
-    private People[] ConvertToPeople(Cursor cursor){
+    /**
+     *
+     */
+    private clesson[] ConvertToclesson(Cursor cursor){
         int resultCounts=cursor.getCount();
         if(resultCounts==0||!cursor.moveToFirst()){
             return null;
         }
-        People[] peoples=new People[resultCounts];
+        clesson[] lessons=new clesson[resultCounts];
         for(int i=0;i<resultCounts;i++){
-            peoples[i]=new People();
-            peoples[i].ID=cursor.getInt(0);
-            peoples[i].Name=cursor.getString(cursor.getColumnIndex(KEY_NAME));
-            peoples[i].Age=cursor.getInt(cursor.getColumnIndex(KEY_AGE));
-            peoples[i].Department=cursor.getString(cursor.getColumnIndex(KEY_DEP));
+            lessons[i]=new clesson();
+            lessons[i].setCno(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+            lessons[i].setCname(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+            lessons[i].setLocat(cursor.getString(cursor.getColumnIndex(KEY_LOC)));
+            lessons[i].setTname(cursor.getString(cursor.getColumnIndex(KEY_TN)));
+            lessons[i].setTimedata(cursor.getInt(cursor.getColumnIndex(KEY_TD)));
             cursor.moveToNext();
         }
-        return peoples;
+        return lessons;
     }
-*/
+
     private static class DBOpenHelper extends SQLiteOpenHelper{
         public DBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
             super(context, name, factory, version);
         }
-        String DB_CREATE= "CREATE TABLE "+DB_TABLE;//+"("+KEY_ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+KEY_NAME+" txet not null, "+KEY_AGE+" integer, "+KEY_DEP+" text);";
+        String DB_CREATE= "CREATE TABLE "+DB_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY, "+KEY_TN+" txet not null, "+KEY_TD+" integer, "+KEY_NAME+" text, "+KEY_LOC+" text not null );";
         @Override
         public void onCreate(SQLiteDatabase _db) {
             _db.execSQL(DB_CREATE);
@@ -118,4 +135,3 @@ public class DBAdapter {
         }
     }
 }
-

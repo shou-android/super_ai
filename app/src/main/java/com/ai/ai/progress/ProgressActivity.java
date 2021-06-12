@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -18,6 +19,8 @@ import com.ai.ai.R;
 import com.ai.ai.base.activity.BaseActivity;
 import com.ai.ai.group.GroupItemDecoration;
 import com.ai.ai.group.GroupRecyclerView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 
 import java.util.HashMap;
@@ -37,6 +40,8 @@ public class ProgressActivity extends BaseActivity implements
     private int mYear;
     CalendarLayout mCalendarLayout;
     GroupRecyclerView mRecyclerView;
+
+
 
     public static void show(Context context) {
         context.startActivity(new Intent(context, ProgressActivity.class));
@@ -69,6 +74,7 @@ public class ProgressActivity extends BaseActivity implements
                 mTextLunar.setVisibility(View.GONE);
                 mTextYear.setVisibility(View.GONE);
                 mTextMonthDay.setText(String.valueOf(mYear));
+
             }
         });
         findViewById(R.id.fl_current).setOnClickListener(new View.OnClickListener() {
@@ -77,6 +83,14 @@ public class ProgressActivity extends BaseActivity implements
                 mCalendarView.scrollToCurrent();
             }
         });
+       /* FloatingActionButton fab = findViewById(R.id.Obadd);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        });*/
         mCalendarLayout = findViewById(R.id.calendarLayout);
         mCalendarView.setOnCalendarSelectListener(this);
         mCalendarView.setOnYearChangeListener(this);
@@ -86,6 +100,7 @@ public class ProgressActivity extends BaseActivity implements
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
     }
+
 
     @Override
     protected void initData() {
@@ -116,12 +131,12 @@ public class ProgressActivity extends BaseActivity implements
         mCalendarView.setSchemeDate(map);
 
 
-
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
         mRecyclerView.setAdapter(new ObjectAdapter(this));
         mRecyclerView.notifyDataSetChanged();
+
     }
 
 

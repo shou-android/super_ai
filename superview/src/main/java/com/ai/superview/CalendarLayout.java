@@ -647,9 +647,7 @@ public class CalendarLayout extends LinearLayout {
      *
      * @return isExpand
      */
-    public final boolean isExpand() {
-        return mMonthView.getVisibility() == VISIBLE;
-    }
+    public final boolean isExpand() { return mMonthView.getVisibility() == VISIBLE; }//== VISIBLE;
 
 
     public boolean expand() {

@@ -7,7 +7,7 @@
     android:background="#ffffff"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.ai.ai.MainActivity"
+    tools:context="com.ai.ai.progress.ProgressActivity"
     tools:ignore="HardcodedText,MissingDefaultResource,RtlHardcoded,RtlSymmetry,SmallSp">
 
 
@@ -88,6 +88,7 @@
                 android:textColor="#000000"
                 android:textSize="12sp" />
         </FrameLayout>
+
     </RelativeLayout>
 
     <com.ai.superview.CalendarLayout
@@ -103,12 +104,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
+            app:calendar_height="52dp"
             app:current_month_lunar_text_color="#CFCFCF"
             app:current_month_text_color="#333333"
             app:day_text_size="14sp"
             app:max_year="2020"
             app:min_year="2004"
-            app:calendar_height="52dp"
             app:month_view="com.ai.ai.progress.ProgressMonthView"
             app:month_view_show_mode="mode_fix"
             app:other_month_lunar_text_color="#e1e1e1"
@@ -126,7 +127,9 @@
             app:year_view_day_text_size="9sp"
             app:year_view_month_text_color="#ff0000"
             app:year_view_month_text_size="20sp"
-            app:year_view_scheme_color="#f17706" />
+            app:year_view_scheme_color="#f17706" >
+
+        </com.ai.superview.CalendarView>
 
         <com.ai.ai.group.GroupRecyclerView
             android:id="@+id/recyclerView"
@@ -140,7 +143,7 @@
             app:group_padding_left="16dp"
             app:group_padding_right="16dp"
             app:group_text_color="#555555"
-            app:group_text_size="14sp" />
+            app:group_text_size="14sp"/>
 
     </com.ai.superview.CalendarLayout>
 

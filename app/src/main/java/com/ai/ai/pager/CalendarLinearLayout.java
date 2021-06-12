@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.Nullable;
 import androidx.viewpager.widget.ViewPager;
 
+import com.ai.ai.db.DBAdapter;
 import com.ai.superview.CalendarLayout;
 import com.ai.ai.base.fragment.FragmentAdapter;
 
