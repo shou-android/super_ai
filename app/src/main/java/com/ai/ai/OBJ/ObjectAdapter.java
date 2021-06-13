@@ -9,14 +9,11 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ai.ai.OBJ.Object;
 import com.ai.ai.R;
 import com.ai.ai.db.DBAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 import com.ai.ai.group.GroupRecyclerAdapter;
-import com.google.android.material.chip.ChipDrawable;
-import com.ai.ai.db.DBAdapter;
 import  com.ai.ai.lesson.clesson;
 
 import java.util.ArrayList;
@@ -40,36 +37,35 @@ public class ObjectAdapter extends GroupRecyclerAdapter<String, Object> {
         LinkedHashMap<String, List<Object>> map = new LinkedHashMap<>();
         List<String> titles = new ArrayList<>();
         map.put("今日事务", create(0,context));
-        map.put("今日课程", create(1,context));
+        //map.put("今日课程", create(1,context));
         titles.add("今日事务");
-        titles.add("今日课程");
+        //titles.add("今日课程");
         resetGroups(map,titles);
-
     }
 
 
     @Override
     protected RecyclerView.ViewHolder onCreateDefaultViewHolder(ViewGroup parent, int type) {
-        return new ArticleViewHolder(mInflater.inflate(R.layout.item_list_article, parent, false));
+        return new ObjectViewHolder(mInflater.inflate(R.layout.item_list_article, parent, false));
     }
 
     @Override
     protected void onBindViewHolder(RecyclerView.ViewHolder holder, Object item, int position) {
-        ArticleViewHolder h = (ArticleViewHolder) holder;
+        ObjectViewHolder h = (ObjectViewHolder) holder;
         h.mTextTitle.setText(item.getTitle());
         h.mTextContent.setText(item.getContent());
         h.CH.setChecked(item.getfinish());
     }
 
-    private static class ArticleViewHolder extends RecyclerView.ViewHolder {
+    private static class ObjectViewHolder extends RecyclerView.ViewHolder {
         private TextView mTextTitle,
                 mTextContent;
         private ImageView mImageView;
         private CheckBox CH;
 
-        private ArticleViewHolder(View itemView) {
+        private ObjectViewHolder(View itemView) {
             super(itemView);
-            mTextTitle = itemView.findViewById(R.id.tv_title);
+            mTextTitle = itemView.findViewById(R.id.tv_name);
             mTextContent = itemView.findViewById(R.id.tv_content);
             CH = itemView.findViewById(R.id.Finish);
         }

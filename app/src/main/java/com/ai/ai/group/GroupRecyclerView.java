@@ -88,4 +88,10 @@ public class GroupRecyclerView extends RecyclerView {
     public interface OnGroupChangeListener {
         void onGroupChange(int groupPosition, String group);
     }
+    public void Sclear()
+    {
+
+        //RecyclerView.LayoutManager(removeView());
+        new RecyclerView.Recycler().clear();
+    }
 }

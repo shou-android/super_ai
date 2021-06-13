@@ -9,12 +9,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.ai.ai.group.Exsuper;
+import com.ai.ai.group.SuperAdapter;
 import com.ai.superview.Calendar;
 import com.ai.superview.CalendarLayout;
 import com.ai.superview.CalendarView;
 import com.ai.ai.OBJ.Object;
 import com.ai.ai.OBJ.ObjectAdapter;
+import com.ai.ai.lesson.clesson;
+import com.ai.ai.lesson.lessonAdapter;
 import com.ai.ai.R;
 import com.ai.ai.base.activity.BaseActivity;
 import com.ai.ai.group.GroupItemDecoration;
@@ -137,7 +142,6 @@ public class ProgressActivity extends BaseActivity implements
                 getSchemeCalendar(year, month, 27, 0xFF13acf0, "95"));
         //此方法在巨大的数据量上不影响遍历性能，推荐使用
         mCalendarView.setSchemeDate(map);
-
     }
 
 
@@ -190,8 +194,8 @@ public class ProgressActivity extends BaseActivity implements
          */
         mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(super.getBaseContext()));
-        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
-        mRecyclerView.setAdapter(new ObjectAdapter(super.getBaseContext()));
+        mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Exsuper>());
+        mRecyclerView.setAdapter(new SuperAdapter(super.getBaseContext()));
         mRecyclerView.notifyDataSetChanged();
     }
 
