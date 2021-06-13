@@ -3,12 +3,12 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/item_friend"
-            android:icon="@drawable/icon_friend"
-            android:title="朋友" />
+            android:icon="@mipmap/ic_calendar"
+            android:title="学习日历" />
         <item
             android:id="@+id/item_wallet"
             android:icon="@drawable/icon_wallet"
-            android:title="钱包" />
+            android:title="课程表" />
         <item
             android:id="@+id/item_location"
             android:icon="@drawable/icon_location"

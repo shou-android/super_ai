@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/Theme.AI">
-        <activity android:name=".progress.ProgressActivity">
+        <activity android:name=".Login.Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       <!-- <activity android:name=".progress.ProgressActivity" />-->
+        <activity android:name=".demoActivity" />
+       <activity android:name=".progress.ProgressActivity" />
     </application>
 
 </manifest>

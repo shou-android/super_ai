@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,10 @@ public class demoActivity extends AppCompatActivity {
     private NavigationView navView;//导航视图
     private DrawerLayout drawerLayout;//滑动菜单
     //private DrawerLayout drawerLayout;//滑动菜单
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, demoActivity.class));
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

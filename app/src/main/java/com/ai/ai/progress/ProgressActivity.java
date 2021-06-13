@@ -88,12 +88,6 @@ public class ProgressActivity extends BaseActivity implements
             @Override
             public void onClick(View v) {
                 mCalendarView.scrollToCurrent();
-
-                mRecyclerView = findViewById(R.id.recyclerView);
-                mRecyclerView.setLayoutManager(new LinearLayoutManager(v.getContext()));
-                mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
-                mRecyclerView.setAdapter(new ObjectAdapter(v.getContext()));
-                mRecyclerView.notifyDataSetChanged();
             }
         });
        /* FloatingActionButton fab = findViewById(R.id.Obadd);
