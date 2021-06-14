@@ -3,6 +3,7 @@ package com.ai.ai.Ctable;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ai.ai.db.DBAdapter;
 import com.ai.ai.group.Exsuper;
 import com.ai.ai.R;
+import com.ai.ai.progress.ProgressActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +37,10 @@ public class CtableActivity extends AppCompatActivity {
     private LinearLayout linearLayout1, linearLayout2, linearLayout3, linearLayout4, linearLayout5, linearLayout6, linearLayout7;
     private List<Exsuper> Mon, Tus, Wed, Thu, Fri, Sta, Sun;
     private DBAdapter db=new DBAdapter(this);
+
+    public static void show(Context context) {
+        context.startActivity(new Intent(context, CtableActivity.class));
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

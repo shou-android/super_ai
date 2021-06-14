@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.ai.ai.Ctable.CtableActivity;
 import com.ai.ai.progress.ProgressActivity;
 import com.google.android.material.navigation.NavigationView;
 
@@ -46,11 +47,10 @@ public class demoActivity extends AppCompatActivity {
         navView.setNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.item_friend:
-                    //showMsg("朋友");
                     ProgressActivity.show(this);
                     break;
                 case R.id.item_wallet:
-                    showMsg("钱包");
+                    CtableActivity.show(this);
                     break;
                 case R.id.item_location:
                     showMsg("位置");
