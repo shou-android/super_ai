@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ai.ai.R;
+import com.ai.ai.db.DBAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
 
@@ -16,17 +17,20 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.ai.superview.Calendar;
+
 public class SuperAdapter extends GroupRecyclerAdapter<String,Exsuper>{
 
     private RequestManager mLoader;
 
-    public SuperAdapter(Context context) {
+    public SuperAdapter(Context context,int data) {
         super(context);
         mLoader = Glide.with(context.getApplicationContext());
         LinkedHashMap<String, List<Exsuper>> map = new LinkedHashMap<>();
         List<String> titles = new ArrayList<>();
-        map.put("今日事务", create(0));
-        map.put("今日课程", create(1));
+        map.clear();
+        map.put("今日事务", create(0,context,data));
+        map.put("今日课程", create(1,context,data));
         titles.add("今日事务");
         titles.add("今日课程");
         resetGroups(map,titles);
@@ -46,7 +50,7 @@ public class SuperAdapter extends GroupRecyclerAdapter<String,Exsuper>{
         h.mTextstar.setText(String.valueOf(item.getSstar()));
         h.mTextfinish.setText(String.valueOf(item.getSfinish()));
         h.mTextSl.setText(item.getSloty());
-        h.CH.setChecked(item.getcomplite());
+        h.CH.setChecked(item.Sgetcomplite());
     }
 
     private static class SViewHolder extends RecyclerView.ViewHolder {
@@ -86,18 +90,46 @@ public class SuperAdapter extends GroupRecyclerAdapter<String,Exsuper>{
         return es;
     }
 
-    private List<Exsuper> create(int p) {
-        List<Exsuper> list = new ArrayList<>();
-        if (p == 0) {
-            list.add(create(p,"新高区开发","新闻","新高区开展一系列xxx计划",false,4,6));
-
-        } else if (p == 1) {
-            list.add(create(p,"Math","1111","LIhua",false,8,9));
+    private List<Exsuper> create(int p, Context context,int data) {
+        DBAdapter db = new DBAdapter(context);
+        db.open();
+        Exsuper pexsupers = new Exsuper();
+        for (int i = 0; i < 3; i++) {
+            pexsupers.setSid(i+1);
+            pexsupers.setType(p);
+            pexsupers.setSstar(i+1 + 5 % 3);
+            pexsupers.setSfinish(i+1 + 7 % 3);
+            pexsupers.setTimedata(data+(i%3));
+            pexsupers.setSname(i+1 + "?");
+            pexsupers.setScontext(i+1 + "OPOP");
+            pexsupers.setcomplite1(1);
+            pexsupers.setSloty(i+1 + "pppppppp");
+            db.insert(pexsupers);
         }
 
+        Exsuper exsuper[] = db.queryOneDate(data, p);
+        List<Exsuper> list = new ArrayList<>();
 
+        if (p == 0) {
+            list.add(create(p, "新高区开发", "新闻", "新高区开展一系列xxx计划", false, 4, 6));
+            if (exsuper.length != 0) {
+                for (int i = 0; i < exsuper.length; i++) {
+                    list.add(create(p, exsuper[i].getSname(), exsuper[i].getSloty(), exsuper[i].getScontext(),
+                            exsuper[i].Sgetcomplite(), exsuper[i].getSstar(), exsuper[i].getSfinish()));
+                }
+            }
+
+        } else if (p == 1) {
+            list.add(create(p, "Math", "1111", "LIhua", false, 8, 9));
+            if (exsuper.length != 0) {
+                for (int i = 0; i < exsuper.length; i++) {
+                    list.add(create(p, exsuper[i].getSname(), exsuper[i].getSloty(), exsuper[i].getScontext(),
+                            exsuper[i].Sgetcomplite(), exsuper[i].getSstar(), exsuper[i].getSfinish()));
+                }
+            }
+        }
+        db.close();
         return list;
     }
-
 
 }

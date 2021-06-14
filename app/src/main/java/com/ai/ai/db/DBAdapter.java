@@ -1,109 +1,110 @@
 package com.ai.ai.db;
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-
-
-import  com.ai.ai.lesson.clesson;
 import androidx.annotation.Nullable;
 
+import com.ai.ai.group.Exsuper;
+
+
+
 public class DBAdapter {
-    private static final String DB_NAME="lesson.db";
-    private static final String DB_TABLE="lessoninfo";
+    private static final String DB_NAME="exsuper.db";
+    private static final String DB_TABLE="exsuperinfo";
     private static final int DB_VERSION=1;
 
-    private static final String KEY_ID="_id";
-    private static final String KEY_NAME="cname";
-    private static final String KEY_LOC="locat";
-    private static final String KEY_TN="tname";
-    private static final String KEY_TD="timedata";
+    private static final String KEY_ID="_id";//
+    private static final String KEY_NAME="sname";//
+    private static final String KEY_SCO="scontext";//
+    private static final String KEY_SST="sstar";//
+    private static final String KEY_SFI="sfinish";//
+    private static final String KEY_SLO="sloty";//
+    private static final String KEY_TIM="timedata";//
+    private static final String KEY_COM="complite";//
+    private static final String KEY_TYP="type";//
 
     private SQLiteDatabase db;
     private final Context context;
     private DBOpenHelper dbOpenHelper;
 
-    /**
-     * 插入函数接口
-     */
-    public long insert(clesson lesson){
+
+    public long insert(Exsuper exsuper){
         ContentValues newValues=new ContentValues();
 
-        newValues.put(KEY_NAME,lesson.getCname());
-        newValues.put(KEY_LOC,lesson.getLocat());
-        newValues.put(KEY_TN,lesson.getTname());
-        newValues.put(KEY_ID,lesson.getCno());
-        newValues.put(KEY_TD,lesson.getTimedata());
+        newValues.put(KEY_NAME,exsuper.getSname());
+        //newValues.put(KEY_ID,exsuper.getid());
+        newValues.put(KEY_TIM,exsuper.getTimedata());
+        newValues.put(KEY_COM,exsuper.getcomplite());
+        newValues.put(KEY_SCO,exsuper.getScontext());
+        newValues.put(KEY_SFI,exsuper.getSfinish());
+        newValues.put(KEY_SLO,exsuper.getSloty());
+        newValues.put(KEY_SST,exsuper.getSstar());
+        newValues.put(KEY_TYP,exsuper.getType());
 
         return db.insert(DB_TABLE,null,newValues);//insert(DB_TABLE,null,newValues);
     }
-
-    /**
-     * 各类函数封装
-     * @return
-     */
     public long deleteAllData(){
         return db.delete(DB_TABLE,null,null);
     }
     public long deleteOneData(long id){
         return db.delete(DB_TABLE,KEY_ID+"=",null);
     }
-
-    /**
-     * 查询数据
-     * @return
-     */
-    public clesson[] queryAllData(){
-        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_LOC,KEY_TD,KEY_TN},null,null,null,null,null);
-        return ConvertToclesson(results);
+    public Exsuper[] queryAllData(){
+        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_COM,KEY_SCO,KEY_SFI,KEY_SLO,KEY_SST,KEY_TIM,KEY_TYP},
+                null,null,null,null,null);
+        return ConvertToExsuper(results);
     }
-    public clesson[] queryOneDate(long id){
-        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_LOC,KEY_TD,KEY_TN},KEY_ID+"="+id,null,null,null,null);
-        return ConvertToclesson(results);
+    public Exsuper[] queryOneDate(int timedate,int type){
+        Cursor results=db.query(DB_TABLE,new String[]{KEY_ID,KEY_NAME,KEY_COM,KEY_SCO,KEY_SFI,KEY_SLO,KEY_SST,KEY_TIM,KEY_TYP},
+                KEY_TIM+"="+timedate +" and "+KEY_TYP+"="+type,null,null,null,null);
+        return ConvertToExsuper(results);
     }
-
-    /**
-     * 更新数据
-     */
-    public long updateOneData(long id,clesson lesson){
+    public long updateOneData(long id, Exsuper exsuper){
         ContentValues updateValues=new ContentValues();
-        updateValues.put(KEY_NAME,lesson.getCname());
-        updateValues.put(KEY_LOC,lesson.getLocat());
-        updateValues.put(KEY_TD,lesson.getTimedata());
-        updateValues.put(KEY_TN,lesson.getTname());
+        updateValues.put(KEY_NAME,exsuper.getSname());
+        //updateValues.put(KEY_ID,exsuper.getid());
+        updateValues.put(KEY_TIM,exsuper.getTimedata());
+        updateValues.put(KEY_COM,exsuper.getcomplite());
+        updateValues.put(KEY_SCO,exsuper.getScontext());
+        updateValues.put(KEY_SFI,exsuper.getSfinish());
+        updateValues.put(KEY_SLO,exsuper.getSloty());
+        updateValues.put(KEY_SST,exsuper.getSstar());
+        updateValues.put(KEY_TYP,exsuper.getType());
 
         return db.update(DB_TABLE,updateValues,KEY_ID+"="+id,null);
     }
 
-    /**
-     *
-     */
-    private clesson[] ConvertToclesson(Cursor cursor){
+    private Exsuper[] ConvertToExsuper(Cursor cursor){
         int resultCounts=cursor.getCount();
         if(resultCounts==0||!cursor.moveToFirst()){
             return null;
         }
-        clesson[] lessons=new clesson[resultCounts];
+        Exsuper[] exsupers=new Exsuper[resultCounts];
         for(int i=0;i<resultCounts;i++){
-            lessons[i]=new clesson();
-            lessons[i].setCno(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
-            lessons[i].setCname(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-            lessons[i].setLocat(cursor.getString(cursor.getColumnIndex(KEY_LOC)));
-            lessons[i].setTname(cursor.getString(cursor.getColumnIndex(KEY_TN)));
-            lessons[i].setTimedata(cursor.getInt(cursor.getColumnIndex(KEY_TD)));
+            exsupers[i]=new Exsuper();
+            exsupers[i].setSid(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+            exsupers[i].setType(cursor.getInt(cursor.getColumnIndex(KEY_TYP)));
+            exsupers[i].setSstar(cursor.getInt(cursor.getColumnIndex(KEY_SST)));
+            exsupers[i].setSfinish(cursor.getInt(cursor.getColumnIndex(KEY_SFI)));
+            exsupers[i].setTimedata(cursor.getInt(cursor.getColumnIndex(KEY_TIM)));
+            exsupers[i].setSname(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+            exsupers[i].setScontext(cursor.getString(cursor.getColumnIndex(KEY_SCO)));
+            exsupers[i].setcomplite1(cursor.getInt(cursor.getColumnIndex(KEY_COM)));
+            exsupers[i].setSloty(cursor.getString(cursor.getColumnIndex(KEY_SLO)));
             cursor.moveToNext();
         }
-        return lessons;
+        return exsupers;
     }
-
     private static class DBOpenHelper extends SQLiteOpenHelper{
         public DBOpenHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
             super(context, name, factory, version);
         }
-        String DB_CREATE= "CREATE TABLE "+DB_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY, "+KEY_TN+" txet not null, "+KEY_TD+" integer, "+KEY_NAME+" text, "+KEY_LOC+" text not null );";
+        String DB_CREATE= "CREATE TABLE "+DB_TABLE+"("+KEY_ID+" INTEGER PRIMARY KEY autoincrement, "+KEY_NAME+" txet not null, "+KEY_SCO+" text not null,"+KEY_SST+" integer, "+KEY_SFI+" integer, "+KEY_SLO+" text not null, "+KEY_TIM+" integer, "+KEY_TYP+" interger,"+KEY_COM+" interger );";
         @Override
         public void onCreate(SQLiteDatabase _db) {
             _db.execSQL(DB_CREATE);

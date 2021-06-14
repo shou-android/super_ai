@@ -12,4 +12,14 @@
         <attr name="group_has_header" format="boolean" />
     </declare-styleable>
 
+    <string-array name="top">
+        <item>周一</item>
+        <item>周二</item>
+        <item>周三</item>
+        <item>周四</item>
+        <item>周五</item>
+        <item>周六</item>
+        <item>周日</item>
+    </string-array>
+
 </resources>

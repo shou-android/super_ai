@@ -2,12 +2,13 @@ package com.ai.ai.pager;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ai.ai.OBJ.Object;
-import com.ai.ai.OBJ.ObjectAdapter;
+
 import com.ai.ai.R;
 import com.ai.ai.base.fragment.BaseFragment;
+import com.ai.ai.group.Exsuper;
 import com.ai.ai.group.GroupItemDecoration;
 import com.ai.ai.group.GroupRecyclerView;
+import com.ai.ai.group.SuperAdapter;
 
 public class PagerFragment extends BaseFragment {
 
@@ -28,8 +29,8 @@ public class PagerFragment extends BaseFragment {
         mRecyclerView = mRootView.findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Object>());
-        mRecyclerView.setAdapter(new ObjectAdapter(mContext));
-        mRecyclerView.notifyDataSetChanged();
+       /* mRecyclerView.setAdapter(new SuperAdapter(mContext));
+        mRecyclerView.notifyDataSetChanged();*/
     }
 
     @Override

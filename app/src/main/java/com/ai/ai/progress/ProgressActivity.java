@@ -16,10 +16,7 @@ import com.ai.ai.group.SuperAdapter;
 import com.ai.superview.Calendar;
 import com.ai.superview.CalendarLayout;
 import com.ai.superview.CalendarView;
-import com.ai.ai.OBJ.Object;
-import com.ai.ai.OBJ.ObjectAdapter;
-import com.ai.ai.lesson.clesson;
-import com.ai.ai.lesson.lessonAdapter;
+
 import com.ai.ai.R;
 import com.ai.ai.base.activity.BaseActivity;
 import com.ai.ai.group.GroupItemDecoration;
@@ -187,9 +184,10 @@ public class ProgressActivity extends BaseActivity implements
          * 设置每日任务
          */
         mRecyclerView = findViewById(R.id.recyclerView);
+        mRecyclerView.removeAllViews();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(super.getBaseContext()));
         mRecyclerView.addItemDecoration(new GroupItemDecoration<String, Exsuper>());
-        mRecyclerView.setAdapter(new SuperAdapter(super.getBaseContext()));
+        mRecyclerView.setAdapter(new SuperAdapter(super.getBaseContext(),calendar.getDay()));
         mRecyclerView.notifyDataSetChanged();
     }
 

@@ -16,4 +16,8 @@
     <color name="white">#FFFFFFFF</color>
 
 
+    <color name="divider">#000000</color>
+    <color name="item">#9fb3d1ff</color>
+    <color name="background">#ffffff</color>
+
 </resources>

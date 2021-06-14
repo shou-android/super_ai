@@ -7,8 +7,7 @@ import android.graphics.RectF;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ai.ai.OBJ.Object;
-import com.ai.ai.OBJ.ObjectAdapter;
+
 import com.ai.ai.R;
 import com.ai.ai.group.GroupItemDecoration;
 import com.ai.ai.group.GroupRecyclerView;
